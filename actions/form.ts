@@ -22,3 +22,15 @@ export async function createDynamicForm(data: formSchemaType) {
         throw new Error("somethings went wrong");
     }
 }
+
+export async function getForms() {
+    const forms = await prisma.form.findMany({
+        where: {
+            userId: '1'
+        },
+        orderBy: {
+            createdAt: "desc"
+        }
+    })
+    return forms
+}
